@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta charset="utf-8"/>
+		<title>Your weight on another planet</title>
+		<style>
+		    *{
+                padding:0px;
+                margin:0px;
+            }
+            :root 
+            {
+            	user-select:none;
+            }
+			main
+            {
+                height:fit-content;
+                display:flex;
+                flex-direction:column;
+            	justify-content:center;
+            	align-items:center;
+                background-color:#002140;
+                font-family:sans-serif;
+            }
+            h2
+            {
+                color:white;
+                text-transform:lowercase;
+                font-variant:small-caps;
+                font-size:2.5em;
+            }
+            h3
+            {
+                color:white;
+                text-transform:capitalize;
+                font-size:2em;
+            }
+            *[planeta]
+            {
+                --fontSize:calc(1.4em + 1.5vw);
+                width:var(--width);
+                height:var(--width);
+                margin:1em 0px;
+                flex-shrink:0;
+                position:relative;
+                border-radius:50%;
+                overflow:hidden;
+            }
+            *[planeta] > :matches(input[type="number"], label)
+            {
+                width:calc(var(--fontSize) * 1.5);
+                position:absolute;
+                top:50%;
+                left:50%;
+                background-color:rgba(0, 0, 0, .5);
+                border:none;
+                outline:none;
+                color:white;
+                line-height:calc(var(--fontSize) * 0.75);
+                font-size:calc(var(--fontSize) - 2vw);
+                transform:translate3D(-100%, -50%, 1px);
+                z-index:1;
+            }
+            *[planeta] > input[type="number"]
+            {
+                border-radius:calc(var(--width) * 0.04) / 100% 0% 0% 100%;
+                text-align:right;
+            }
+            *[planeta] > label
+            {
+                left:calc(50% + calc(var(--fontSize) * 1.5));
+                border-radius:calc(var(--width) * 0.04) /0% 100%  100% 0%;
+                text-align:left;
+            }
+            *[planeta="tierra"]
+            {
+                --width:40vw;
+                background-color:#008dd2;
+                color:#84bc23;
+            }
+            *[planeta="tierra"]:before
+            {
+                content:"";
+                width:40%;
+                height:60%;
+                position:absolute;
+                left:10%;
+                background:currentColor;
+                border-radius: 100% 50% 100% 100% / 50% 30% 100% 30%;
+                transform:skewy(-30deg) rotate(-05deg);
+                z-index:0;
+                box-shadow: calc(var(--width) * 0.45) calc(var(--width) * 0.72 ) 0 0 currentColor,
+                            calc(var(--width) * -0.33) calc(var(--width) * 0.46 ) 0 0 currentColor;
+            }
+            *[planeta="martes"]
+            {
+                --width:30vw;
+                background-color:#e13300;
+                color:#9e2301;
+            }
+            *[planeta="martes"]:before
+            {
+                content:"";
+                width:30%;
+                height:5%;
+                position:absolute;
+                left:15%;
+                top:20%;
+                background:currentColor;
+                border-radius: 50% / 100% 0% ;
+                transform:skewy(0deg) rotate(-0deg);
+                z-index:0;
+                box-shadow: calc(var(--width) * -0.13) calc(var(--width) * 0.26 ) 0 0 currentColor,
+                            calc(var(--width) * 0.26) calc(var(--width) * 0.10 ) 0 0 currentColor;
+            }
+            *[planeta="venus"]
+            {
+                --width:39vw;
+                background-color:#fc9842;
+                color:#f3b181;
+            }
+            *[planeta="venus"]:before
+            {
+                content:"";
+                width:110%;
+                height:10%;
+                position:absolute;
+                left:2%;
+                top:10%;
+                background:currentColor;
+                border-radius: 50% / 100% 0% ;
+                transform:skewy(0deg) rotate(-0deg);
+                z-index:0;
+                box-shadow: calc(var(--width) * -0.13) calc(var(--width) * 0.30 ) 0 0 currentColor,
+                            calc(var(--width) * 0.16) calc(var(--width) * 0.10 ) 0 0 currentColor,
+                            calc(var(--width) * 0.16) calc(var(--width) * 0.40 ) 0 0 currentColor,
+                            calc(var(--width) * -0.13) calc(var(--width) * 0.60 ) 0 0 currentColor,
+                            calc(var(--width) * 0.16) calc(var(--width) * 0.70 ) 0 0 currentColor;
+            }
+            *[planeta="mercurio"]
+            {
+                --width:30vw;
+                background-color:#6b625b;
+                color:#a2a3a7;
+            }
+            *[planeta="mercurio"]:before
+            {
+                content:"";
+                width:25%;
+                height:10%;
+                position:absolute;
+                left:6%;
+                top:10%;
+                background:currentColor;
+                border-radius: 50% / 100% 0% ;
+                transform:skewy(0deg) rotate(-0deg);
+                z-index:0;
+                box-shadow: calc(var(--width) * -0.13) calc(var(--width) * 0.30 ) 0 0 currentColor,
+                            calc(var(--width) * 0.16) calc(var(--width) * 0.10 ) 0 0 currentColor,
+                            calc(var(--width) * 0.16) calc(var(--width) * 0.40 ) 0 0 currentColor,
+                            calc(var(--width) * -0.13) calc(var(--width) * 0.60 ) 0 0 currentColor,
+                            calc(var(--width) * 0.16) calc(var(--width) * 0.70 ) 0 0 currentColor,
+                            
+                            calc(var(--width) * 0.43) calc(var(--width) * 0.25 ) 0 0 currentColor,
+                            calc(var(--width) * 0.66) calc(var(--width) * 0.10 ) 0 0 currentColor,
+                            calc(var(--width) * 0.66) calc(var(--width) * 0.40 ) 0 0 currentColor,
+                            calc(var(--width) * 0.43) calc(var(--width) * 0.55 ) 0 0 currentColor,
+                            calc(var(--width) * 0.43) calc(var(--width) * -0.05 ) 0 0 currentColor,
+                            calc(var(--width) * 0.66) calc(var(--width) * 0.70 ) 0 0 currentColor;
+            }
+            *[planeta="jupiter"]
+            {
+                --width:60vw;
+                background-color:#c4b49b;
+                color:#c6c3bd;
+            }
+            *[planeta="jupiter"]:before
+            {
+                content:"";
+                width:250%;
+                height:5%;
+                position:absolute;
+                left:6%;
+                top:10%;
+                background:currentColor;
+                border-radius: 50% / 100% 0% ;
+                transform:skewy(0deg) rotate(-0deg);
+                z-index:0;
+                box-shadow: calc(var(--width) * -0.13) calc(var(--width) * 0.30 ) 0 0 currentColor,
+                            calc(var(--width) * -0.36) calc(var(--width) * 0.10 ) 0 0 currentColor,
+                            calc(var(--width) * -0.16) calc(var(--width) * 0.40 ) 0 0 currentColor,
+                            calc(var(--width) * -0.43) calc(var(--width) * 0.60 ) 0 0 currentColor,
+                            calc(var(--width) * -0.16) calc(var(--width) * 0.70 ) 0 0 currentColor,
+                            calc(var(--width) * 0.13) calc(var(--width) * 0.25 ) 0 0 #b19c64,
+                            calc(var(--width) * -0.76) calc(var(--width) * 0.10 ) 0 0 #b19c64,
+                            calc(var(--width) * -0.66) calc(var(--width) * 0.40 ) 0 0 #b19c64,
+                            calc(var(--width) * 0.23) calc(var(--width) * 0.55 ) 0 0 #b19c64,
+                            calc(var(--width) * 0.2) calc(var(--width) * -0.05 ) 0 0 #b19c64,
+                            calc(var(--width) * -0.66) calc(var(--width) * 0.70 ) 0 0 #b19c64;
+            }
+            *[planeta="luna"]
+            {
+                --width:20vw;
+                background-color:#9b999a;
+                color:#686868;
+            }
+            *[planeta="luna"]:before
+            {
+                content:"";
+                width:10%;
+                height:10%;
+                position:absolute;
+                left:50%;
+                top:10%;
+                background:currentColor;
+                border-radius: 50% / 65% 45% ;
+                transform:skewy(0deg) rotate(-0deg);
+                z-index:0;
+                box-shadow: calc(var(--width) * -0.10) calc(var(--width) * 0.30 ) 0 0 currentColor,
+                            calc(var(--width) * -0.36) calc(var(--width) * 0.10 ) 0 0 currentColor,
+                            calc(var(--width) * -0.16) calc(var(--width) * 0.70 ) 0 0 currentColor,
+                            calc(var(--width) * 0.23) calc(var(--width) * 0.55 ) 0 0 currentColor,
+                            calc(var(--width) * -0.66) calc(var(--width) * 0.70 ) 0 0 currentColor;
+            }
+		</style>
+	</head>
+	<body>
+	    <main>
+	        <h2>Ingresa tu peso en la tierra</h2>
+        	<div planeta="tierra">
+        	    <input type="number" id="tierra" /><label>kg</label>
+        	</div>
+	        <h3>la luna</h3>
+        	<div planeta="luna">
+        	    <input type="number" id="luna" readonly/><label>kg</label>
+        	</div>
+	        <h3>martes</h3>
+        	<div planeta="martes">
+        	    <input type="number" id="martes" readonly/><label>kg</label>
+        	</div>
+	        <h3>jupiter</h3>
+        	<div planeta="jupiter">
+        	    <input type="number" id="jupiter" readonly/><label>kg</label>
+        	</div>
+	        <h3>venus</h3>
+        	<div planeta="venus">
+        	    <input type="number" id="venus" readonly/><label>kg</label>
+        	</div>
+	        <h3>mercurio</h3>
+        	<div planeta="mercurio">
+        	    <input type="number" id="mercurio" readonly/><label>kg</label>
+        	</div>
+		</main>
+		
+		
+		<script>
+		    class PesoIdeal 
+            {
+                constructor()
+                {
+                    this.bindPointer.call(this);
+                    this.parameters();
+                    this.getChange();
+                }
+                bindPointer()
+                {
+                    this.getPeso = this.getPeso.bind(this);
+                    this.getLuna = this.getLuna.bind(this);
+                    this.proceso = this.proceso.bind(this);
+                    this.calcular = this.calcular.bind(this);
+                    this.getVenus = this.getVenus.bind(this);
+                    this.getChange = this.getChange.bind(this);
+                    this.getTierra = this.getTierra.bind(this);
+                    this.getMartes = this.getMartes.bind(this);
+                    this.getJupiter = this.getJupiter.bind(this);
+                    this.parameters = this.parameters.bind(this);
+                    this.getMercurio = this.getMercurio.bind(this);
+                    this.getGravedadLuna = this.getGravedadLuna.bind(this);
+                    this.getGravedadVenus = this.getGravedadVenus.bind(this);
+                    this.getGravedadTierra = this.getGravedadTierra.bind(this);
+                    this.getGravedadMartes = this.getGravedadMartes.bind(this);
+                    this.getGravedadJupiter = this.getGravedadJupiter.bind(this);
+                    this.getGravedadMercurio = this.getGravedadMercurio.bind(this);
+                }
+                parameters()
+                {
+                    this.peso;
+                    this.gLuna = 1.62;
+                    this.gVenus = 8.87;
+                    this.gTierra = 9.807;
+                    this.gMartes = 3.711;
+                    this.gMercurio = 3.7;
+                    this.gJupiter = 24.79;
+                    this.luna = document.getElementById('luna');
+                    this.venus = document.getElementById('venus');
+                    this.martes = document.getElementById('martes');
+                    this.tierra = document.getElementById('tierra');
+                    this.jupiter = document.getElementById('jupiter');
+                    this.mercurio = document.getElementById('mercurio');
+                }
+                getChange()
+                {
+                    this.tierra.addEventListener('change', this.proceso);
+                }
+                getPeso()
+                {
+                    return parseFloat(this.tierra.value);
+                }
+                getGravedadTierra()
+                {
+                    return this.gTierra;
+                }
+                getGravedadMartes()
+                {
+                    return this.gMartes;
+                }
+                getGravedadVenus()
+                {
+                    return this.gVenus;
+                }
+                getGravedadMercurio()
+                {
+                    return this.gMercurio;
+                }
+                getGravedadJupiter()
+                {
+                    return this.gJupiter;
+                }
+                getGravedadLuna()
+                {
+                    return this.gLuna;
+                }
+                getTierra()
+                {
+                    return this.tierra;
+                }
+                getMartes()
+                {
+                    return this.martes;
+                }
+                getVenus()
+                {
+                    return this.venus;
+                }
+                getMercurio()
+                {
+                    return this.mercurio;
+                }
+                getJupiter()
+                {
+                    return this.jupiter;
+                }
+                getLuna()
+                {
+                    return this.luna;
+                }
+                calcular(gPlaneta)
+                {
+                    return ((this.getPeso() * gPlaneta) / this.getGravedadTierra()).toFixed(1);
+                }
+                proceso()
+                {
+                    this.getMartes().value = this.calcular(this.getGravedadMartes());
+                    this.getVenus().value = this.calcular(this.getGravedadVenus());
+                    this.getMercurio().value = this.calcular(this.getGravedadMercurio());
+                    this.getJupiter().value = this.calcular(this.getGravedadJupiter());
+                    this.getLuna().value = this.calcular(this.getGravedadLuna());
+                }
+            }
+            let peso = new PesoIdeal();
+		</script>
+	</body>
+</html>
